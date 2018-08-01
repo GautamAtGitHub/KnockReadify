@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace KnockReadify.Controllers
 {
@@ -10,15 +7,17 @@ namespace KnockReadify.Controllers
     public class FibonacciController : Controller
     {
         [HttpGet]
-        public IActionResult Get([FromQuery]int n)
+        public IActionResult Get([FromQuery]Int64 n)
         {
             try
             {
-                int a = 0;
-                int b = 1;
-                int temp = 0;
+                if (n < 0)
+                    throw new Exception("Enter positive value");
+                Int64 a = 0;
+                Int64 b = 1;
+                Int64 temp = 0;
                 // In N steps compute Fibonacci sequence iteratively.
-                for (int i = 0; i < n; i++)
+                for (Int64 i = 0; i < n; i++)
                 {
                     temp = a;
                     a = b;

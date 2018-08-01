@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace KnockReadify.Controllers
 {
@@ -25,7 +21,6 @@ namespace KnockReadify.Controllers
                     else return Ok("Scalene"); //Scalene //There are three distinct values in the set, therefore no sides are equal
                 }
                 else throw new Exception("Invalid triangle input");
-                
             }
             catch (Exception ex)
             {

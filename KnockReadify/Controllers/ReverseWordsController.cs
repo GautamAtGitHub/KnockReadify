@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace KnockReadify.Controllers
 {
@@ -16,7 +13,12 @@ namespace KnockReadify.Controllers
         {
             try
             {
-                return Ok(String.Join(" ", sentence.Split(' ').Reverse()));
+                if (sentence != null)
+                {
+                    var result = string.Join(" ", sentence.Split(' ').Select(x => new String(x.Reverse().ToArray())));
+                    return Ok(result);
+                }
+                else throw new Exception("Invalid Input string");
             }
             catch (Exception ex)
             {
