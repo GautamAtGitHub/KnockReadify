@@ -18,7 +18,7 @@ namespace KnockReadifyUnitTest
                 //Assert
                 Assert.IsInstanceOfType(result, typeof(IActionResult));
 
-                ObjectResult actionResult = (ObjectResult)result;
+                ObjectResult actionResult = (ObjectResult)result.Result;
 
                 Assert.AreEqual(StatusCodes.Status200OK, actionResult.StatusCode);
                 Assert.AreEqual("55", actionResult.Value);
@@ -30,14 +30,15 @@ namespace KnockReadifyUnitTest
         {
             using (FibonacciController controller = new FibonacciController())
             {
-                var result = controller.Get(-5); //Negative input
+                var result = controller.Get(-10); //Negative input
 
                 //Assert
                 Assert.IsInstanceOfType(result, typeof(IActionResult));
 
-                ObjectResult actionResult = (ObjectResult)result;
+                ObjectResult actionResult = (ObjectResult)result.Result;
 
-                Assert.AreEqual(StatusCodes.Status400BadRequest, actionResult.StatusCode);
+                Assert.AreEqual(StatusCodes.Status200OK, actionResult.StatusCode);
+                Assert.AreEqual("-55", actionResult.Value);
             }
         }
     }
