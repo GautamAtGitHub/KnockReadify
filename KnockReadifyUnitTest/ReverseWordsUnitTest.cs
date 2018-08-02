@@ -18,26 +18,10 @@ namespace KnockReadifyUnitTest
                 //Assert
                 Assert.IsInstanceOfType(result, typeof(IActionResult));
 
-                ObjectResult actionResult = (ObjectResult)result;
+                ObjectResult actionResult = (ObjectResult)result.Result;
 
                 Assert.AreEqual(StatusCodes.Status200OK, actionResult.StatusCode);
                 Assert.AreEqual("olleH emosewA yfidaeR", actionResult.Value);
-            }
-        }
-
-        [TestMethod]
-        public void TestMethodGetReverseWordsNull()
-        {
-            using (ReverseWordsController controller = new ReverseWordsController())
-            {
-                var result = controller.Get(null); // Positive input
-
-                //Assert
-                Assert.IsInstanceOfType(result, typeof(IActionResult));
-
-                ObjectResult actionResult = (ObjectResult)result;
-
-                Assert.AreEqual(StatusCodes.Status400BadRequest, actionResult.StatusCode);
             }
         }
     }

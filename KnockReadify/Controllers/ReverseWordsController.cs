@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KnockReadify.Controllers
 {
@@ -9,16 +10,19 @@ namespace KnockReadify.Controllers
     public class ReverseWordsController : Controller
     {
         [HttpGet]
-        public IActionResult Get([FromQuery]string sentence)
+        public async Task<IActionResult> Get([FromQuery]string sentence)
         {
             try
             {
                 if (sentence != null)
                 {
-                    var result = string.Join(" ", sentence.Split(' ').Select(x => new String(x.Reverse().ToArray())));
+                    var result = await Task.Run(() => {
+                        return string.Join(" ", sentence.Split(' ').Select(x => new String(x.Reverse().ToArray())));
+                    });
+
                     return Ok(result);
                 }
-                else throw new Exception("Invalid Input string");
+                else return Ok("");
             }
             catch (Exception ex)
             {
